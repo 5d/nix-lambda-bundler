@@ -11,6 +11,10 @@ export const commandExists = async (command: string): Promise<boolean> => {
     return stderr == null || stderr.length === 0
 }
 
+export const executeCmd = async (command: string) => {
+    return await execPromise(command)
+}
+
 export const commandResult = async (command: string): Promise<string> => {
     return execPromise(command).then(({ stdout, stderr }) => {
         if (stderr != null && stderr.trim().length > 0) {

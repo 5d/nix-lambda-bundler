@@ -1,5 +1,5 @@
 import { BuildOption } from "./type";
-import { commandResult } from "./utils";
+import { executeCmd } from "./utils";
 
 export const buildWithNixDockerContainer = async (options: BuildOption) => {
     const { srcPath, outPath, expressionPath, port, additionalArgs } = options
@@ -21,5 +21,5 @@ export const buildWithNixDockerContainer = async (options: BuildOption) => {
                     -F \\"file=@$tempFolder/result/${outPath};type=application/zip\\"' \
                 "`;
 
-    await commandResult(cmd)
+    await executeCmd(cmd)
 }

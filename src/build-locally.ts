@@ -1,7 +1,11 @@
 import { BuildOption } from "./type";
-import { commandResult, newTempdir } from "./utils";
+import { commandExists, commandResult, newTempdir } from "./utils";
 
 export const buildWithLocalNix = async (options: Required<BuildOption>) => {
+    if (!await commandExists('nix-build')) {
+        throw new Error('Nix is not installed locally')
+    }
+
     const { srcPath, outPath, expressionPath, port, additionalArgs } = options
 
     const argStrs = Object.entries({

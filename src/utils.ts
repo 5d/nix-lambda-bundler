@@ -8,7 +8,7 @@ const execPromise = promisify(exec)
 
 export const commandExists = async (command: string): Promise<boolean> => {
     const { stderr } = await execPromise(`which ${command}`)
-    return stderr == null
+    return stderr == null || stderr.length === 0
 }
 
 export const commandResult = async (command: string): Promise<string> => {

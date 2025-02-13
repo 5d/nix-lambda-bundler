@@ -1,5 +1,5 @@
 import { BuildOption } from "./type";
-import { commandExists, commandResult, newTempdir } from "./utils";
+import { commandExists, executeCmd, newTempdir } from "./utils";
 
 export const buildWithLocalNix = async (options: Required<BuildOption>) => {
     if (!await commandExists('nix-build')) {
@@ -22,5 +22,5 @@ export const buildWithLocalNix = async (options: Required<BuildOption>) => {
         "
     `
 
-    await commandResult(cmd)
+    await executeCmd(cmd)
 }

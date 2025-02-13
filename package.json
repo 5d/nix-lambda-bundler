@@ -1,6 +1,6 @@
 {
   "name": "@5d/nix-lambda-bundler",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "AWS Lambda bundler with Nix",
   "keywords": [
     "nix",

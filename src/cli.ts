@@ -1,8 +1,9 @@
 import yargs from 'yargs/yargs'
+import { hideBin } from 'yargs/helpers'
 import { BuildWithNixOption } from './type';
 import { buildWithNix } from './build-with-nix';
 
-const parser = yargs(process.argv.slice(2)).options({
+const parser = yargs(hideBin(process.argv)).options({
     expression: { type: 'string', require: true },
     src: { type: 'string', require: false },
     out: { type: 'string', require: false },

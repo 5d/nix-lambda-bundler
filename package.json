@@ -29,6 +29,6 @@
     "yargs": "^17.7.2"
   },
   "bin": {
-    "nix-lambda-bundler": "./dist/cli.js"
+    "nix-lambda-bundler": "./dist/cli.cjs"
   }
 }

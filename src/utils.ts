@@ -1,5 +1,8 @@
 import { exec } from "node:child_process";
+import { mkdtemp } from "node:fs/promises";
+import { tmpdir } from "node:os";
 import { promisify } from "node:util";
+import * as path from "path";
 
 const execPromise = promisify(exec)
 
@@ -15,4 +18,8 @@ export const commandResult = async (command: string): Promise<string> => {
         }
         return Promise.resolve(stdout)
     })
+}
+
+export const newTempdir = async (prefix: string = ''): Promise<string> => {
+    return await mkdtemp(path.join(tmpdir(), prefix))
 }

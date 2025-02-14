@@ -4,12 +4,41 @@ import { BuildWithNixOption } from './type';
 import { buildWithNix } from './build-with-nix';
 
 const parser = yargs(hideBin(process.argv)).options({
-    expression: { type: 'string', require: true },
-    src: { type: 'string', require: false },
-    out: { type: 'string', require: false },
-    resultFolder: { type: 'string', require: false },
-    withInDocker: { type: 'boolean', require: false },
-    additionalArg: { type: 'array', require: false },
+    expression: {
+        type: 'string',
+        demandOption: true,
+        description: "Path to the Nix expression file/folder",
+    },
+    src: {
+        type: 'string',
+        demandOption: false,
+        description: "Path to the Lambda source code folder",
+        defaultDescription: "./"
+    },
+    out: {
+        type: 'string',
+        demandOption: false,
+        description: "Relative path of the final output inside the Nix $out directory",
+        defaultDescription: "./lib/function.zip"
+    },
+    resultFolder: {
+        type: 'string',
+        demandOption: false,
+        description: "Directory where the generated result (function.zip) will be stored",
+        defaultDescription: "temporary folder (mktemp -d)"
+    },
+    withInDocker: {
+        type: 'boolean',
+        demandOption: false,
+        description: 'Run the build inside the official Nix Docker container',
+        defaultDescription: 'true'
+    },
+    additionalArg: {
+        type: 'array',
+        demandOption: false,
+        description: 'Extra arguments to pass to the Nix expression using --argstr. Format: "key,value"',
+        defaultDescription: 'empty'
+    },
 });
 
 const parseAdditionalArg = (arg: string): [string, string] => {

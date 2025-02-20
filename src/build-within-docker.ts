@@ -5,13 +5,13 @@ export const buildWithNixDockerContainer = async (options: BuildOption) => {
     const { srcPath, outPath, expressionPath, port, additionalArgs } = options
     const argStrs = Object.entries({
         ...additionalArgs,
-        cdkSrc: srcPath
+        ...(srcPath != null ? { cdkSrc: srcPath } : {}),
     }).map(([k, v]) => `--argstr ${k} ${v}`).join(' ')
 
     const cmd = `
         docker run --rm \
             --add-host=host.docker.internal:host-gateway \
-            -v ${srcPath}:/cdk-src \
+            ${srcPath != null ? `-v ${srcPath}:/cdk-src` : ''} \
             -v ${expressionPath}:/cdk-nix \
             nixos/nix \
             bash -c "\

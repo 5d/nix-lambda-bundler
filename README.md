@@ -61,7 +61,9 @@ Options:
   --help           Show help                                           [boolean]
   --version        Show version number                                 [boolean]
   --expression     Path to the Nix expression file/folder    [string] [required]
-  --src            Path to the Lambda source code folder  [string] [default: ./]
+  --src            Path to the Lambda source code folder
+     [string] [default: empty; The source can be defined elsewhere and retrieved
+                                                                      remotely.]
   --out            Relative path of the final output inside the Nix $out
                    directory              [string] [default: ./lib/function.zip]
   --resultFolder   Directory where the generated result (function.zip) will be

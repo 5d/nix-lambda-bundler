@@ -13,7 +13,7 @@ const parser = yargs(hideBin(process.argv)).options({
         type: 'string',
         demandOption: false,
         description: "Path to the Lambda source code folder",
-        defaultDescription: "./"
+        defaultDescription: "empty; The source can be defined elsewhere and retrieved remotely."
     },
     out: {
         type: 'string',

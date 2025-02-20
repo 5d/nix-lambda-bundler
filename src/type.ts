@@ -2,7 +2,7 @@ export interface BuildWithNixOption {
 
     readonly expressionPath: string;
 
-    readonly srcPath?: string;
+    readonly srcPath?: string; // default to undefined
 
     readonly outPath?: string; // default to `./lib/function.zip`
 
@@ -14,6 +14,7 @@ export interface BuildWithNixOption {
 
 }
 
-export type BuildOption = Required<Omit<BuildWithNixOption, 'withInDocker' | 'resultFolder'>> & {
-    readonly port: number
+export type BuildOption = Required<Omit<BuildWithNixOption, 'withInDocker' | 'resultFolder' | 'srcPath'>> & {
+    readonly port: number,
+    readonly srcPath?: string,
 }

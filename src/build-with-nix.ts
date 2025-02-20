@@ -20,7 +20,7 @@ const getHostIp = async (useDocker: boolean) => {
 export const buildWithNix = async (options: BuildWithNixOption): Promise<string> => {
     const {
         expressionPath,
-        srcPath = path.join(__dirname),
+        srcPath,
         resultFolder = await newTempdir('cdk-nix-build-'),
         outPath = "./lib/function.zip",
         withInDocker = true,

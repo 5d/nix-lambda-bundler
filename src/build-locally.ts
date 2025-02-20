@@ -1,7 +1,7 @@
 import { BuildOption } from "./type";
 import { commandExists, executeCmd, newTempdir } from "./utils";
 
-export const buildWithLocalNix = async (options: Required<BuildOption>) => {
+export const buildWithLocalNix = async (options: BuildOption) => {
     if (!await commandExists('nix-build')) {
         throw new Error('Nix is not installed locally')
     }
@@ -10,7 +10,7 @@ export const buildWithLocalNix = async (options: Required<BuildOption>) => {
 
     const argStrs = Object.entries({
         ...additionalArgs,
-        cdkSrc: srcPath
+        ...(srcPath != null ? { cdkSrc: srcPath } : {}),
     }).map(([k, v]) => `--argstr ${k} ${v}`).join(' ')
 
     const tempFolder = await newTempdir()

@@ -6,12 +6,9 @@ export const buildWithLocalNix = async (options: BuildOption) => {
         throw new Error('Nix is not installed locally')
     }
 
-    const { srcPath, outPath, expressionPath, port, additionalArgs } = options
+    const { outPath, expressionPath, port, additionalArgs } = options
 
-    const argStrs = Object.entries({
-        ...additionalArgs,
-        ...(srcPath != null ? { cdkSrc: srcPath } : {}),
-    }).map(([k, v]) => `--argstr ${k} ${v}`).join(' ')
+    const argStrs = Object.entries(additionalArgs).map(([k, v]) => `--argstr ${k} ${v}`).join(' ')
 
     const tempFolder = await newTempdir()
     const cmd = `

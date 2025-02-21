@@ -3,10 +3,8 @@ import { executeCmd } from "./utils";
 
 export const buildWithNixDockerContainer = async (options: BuildOption) => {
     const { srcPath, outPath, expressionPath, port, additionalArgs } = options
-    const argStrs = Object.entries({
-        ...additionalArgs,
-        ...(srcPath != null ? { cdkSrc: srcPath } : {}),
-    }).map(([k, v]) => `--argstr ${k} ${v}`).join(' ')
+
+    const argStrs = Object.entries(additionalArgs).map(([k, v]) => `--argstr ${k} ${v}`).join(' ')
 
     const cmd = `
         docker run --rm \

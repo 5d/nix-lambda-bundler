@@ -8,6 +8,8 @@ You can use either:
 - **System-installed Nix** (if you already have Nix installed on your machine).
 - **Nix within Docker** (using the official Nix Docker image for isolated builds).
 
+*Examples: https://gitlab.com/5d.cdk/nix-lambda-bundler-examples*
+
 ## Installation
 
 First, configure your project to set my GitHub registry namespace by adding or modifying the `.npmrc` file in the project root. Append the following line:
